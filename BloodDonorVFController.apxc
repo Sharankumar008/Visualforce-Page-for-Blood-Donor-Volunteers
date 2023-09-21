@@ -1,0 +1,37 @@
+public class BloodDonorVFController {
+    public Bllod_Donor__c bloodDonorObj{get;set;}
+    public String message{get;set;}
+    public Boolean showSuccessMessage { get; set; }
+    
+    String homePageUrl = URL.getSalesforceBaseUrl().toExternalForm() + '/home/home.jsp';
+    public BloodDonorVFController(){
+        bloodDonorObj=new Bllod_Donor__c();
+    }
+    public void saveBloodDonor(){
+        insert bloodDonorObj;
+        
+        
+        //return new PageReference('/'+bloodDonorObj.id);
+        message = 'Record Registered Successfully!';
+        showSuccessMessage = true;
+       
+        String toAddress=bloodDonorObj.Email__c;
+        String subject='Added as Blood Donor Volunteer';
+        String body='<u>YOU ARE NOW A VOLUNTEER OF DLOOD DONOR</u><br/>';
+        body +='Name: '+ bloodDonorObj.Name__c+ '\n <br/>';
+            body +='Date of Birth: '+ bloodDonorObj.DOB__c + '\n <br/>';
+            body +='Blood Group: '+ bloodDonorObj.Blood_Group__c+ '\n <br/>';
+            body += 'Email: ' + bloodDonorObj.Email__c + '\n <br/>';
+        body += 'Phone Number: ' + bloodDonorObj.Donor_Ph_Number__c + '\n <br/>';
+        body += 'State: ' + bloodDonorObj.State__c + '\n <br/>';
+        body += 'District: ' + bloodDonorObj.District__c + '\n <br/>';
+        body += 'District: ' + bloodDonorObj.Your_Weight__c + '\n <br/>';
+        body += 'Last Donated Date: ' + bloodDonorObj.Last_Donated__c + '\n <br/>';
+        
+        EmailHelper.sendEmail(toAddress, subject, body);
+    }
+    
+    public PageReference cancel() {
+        return new PageReference(homePageUrl);
+    }
+}
