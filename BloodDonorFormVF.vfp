@@ -1,0 +1,113 @@
+<apex:page controller="BloodDonorVFController">
+    <style>
+        /* Define a CSS class to style the label text */
+        .label-style {
+        align: center; /* Align the label text to the right */
+        padding-right: 10px; /* Add some right padding to separate it from the input field */
+        width: 150px; /* Set a fixed width for the label if needed */
+        }
+        .bloodTitle{
+        text-align: center;
+        color: Blue;
+        font-size: 50px;
+        font-family: Times new Roman;
+        }
+        .bloodTitle1{
+        text-align: center;
+        color: Red;
+        font-size: 30px;
+        font-family: Times new Roman;
+        }
+        .bloodTitle2{
+        text-align: center;
+        color: Blue;
+        font-size: 20px;
+        font-family: Times new Roman;
+        }
+        .custom-image{
+        justify-content: center;
+        align-items: center;
+        }
+    </style>
+    <apex:form >
+        <div class="bloodTitle">
+            <b>Direction For Volunteers</b>
+        </div>
+        <div>
+            <apex:image url="https://c8.alamy.com/comp/PJ2GF8/two-hands-donate-blood-world-blood-donor-day-concept-red-drop-symbol-of-volunteer-blood-donation-vector-illustration-isolated-on-white-background-PJ2GF8.jpg" width="200" height="200" styleClass="custom-image" />
+        </div>
+        <div class="bloodTitle1">
+            <b>Blood Donor Form</b>
+        </div>
+        <div class="bloodTitle2">
+            Willing to Save Someone in Emergency?? Enroll Yourself as a Blood Donor. You can register your Friends and families Members too
+        </div>
+        <apex:pageBlock title="Input Blood Donor Record">
+            <table>
+                <tr>
+                    <td class="label-style">Enter Name</td>
+                    <td><apex:inputField value="{!bloodDonorObj.Name__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">Date of Birth</td>
+                    <td><apex:inputField value="{!bloodDonorObj.DOB__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">Blood Group</td>
+                    <td><apex:inputField value="{!bloodDonorObj.Blood_Group__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">Enter Email</td>
+                    <td><apex:inputField value="{!bloodDonorObj.Email__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">Phone Number</td>
+                    <td><apex:inputField value="{!bloodDonorObj.Donor_Ph_Number__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">State</td>
+                    <td><apex:inputField value="{!bloodDonorObj.State__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">District</td>
+                    <td><apex:inputField value="{!bloodDonorObj.District__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">Weight</td>
+                    <td><apex:inputField value="{!bloodDonorObj.Your_Weight__c}"/></td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td class="label-style">Last Donated Date</td>
+                    <td><apex:inputField value="{!bloodDonorObj.Last_Donated__c}"/></td>
+                    
+                </tr>
+            </table>
+            
+            <apex:commandButton value="Submit" action="{!saveBloodDonor}" reRender="message" />
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+        </apex:pageBlock>
+    </apex:form>
+    <div class="bloodTitle2"><b>
+        <apex:outputPanel id="message" >
+            <apex:outputText value="{!message}" rendered="{!showSuccessMessage}" />
+        </apex:outputPanel></b>
+    </div>
+    
+    
+</apex:page>
